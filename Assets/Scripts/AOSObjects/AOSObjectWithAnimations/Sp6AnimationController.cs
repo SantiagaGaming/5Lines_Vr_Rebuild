@@ -11,6 +11,36 @@ public class Sp6AnimationController : AosObjectBase
     {
         _anim = GetComponent<Animator>();
     }
+    [AosAction(name: "Проиграть анимацию люфт плюс")]
+    public void PlayLuftPlusAnim()
+    {
+        _anim.SetTrigger("otkazLuftPlus");
+    }
+    [AosAction(name: "Проиграть анимацию люфт минус")]
+    public void PlayLuftMinusAnim()
+    {
+        _anim.SetTrigger("otkazLuftMinus");
+    }
+    [AosAction(name: "Проиграть анимацию накат плюс")]
+    public void PlayNakatPlusAnim()
+    {
+        _anim.SetTrigger("otkazNakatPlus");
+    }
+    [AosAction(name: "Проиграть анимацию накат минус")]
+    public void PlayNakatMinusAnim()
+    {
+        _anim.SetTrigger("otkazNakatMinus");
+    }
+    [AosAction(name: "Проиграть анимацию рег лайн плюс")]
+    public void PlayRegLinePlusAnim()
+    {
+        _anim.SetTrigger("otkazRegLinePlus");
+    }
+    [AosAction(name: "Проиграть анимацию рег лайн минус")]
+    public void PlayRegLineMinusAnim()
+    {
+        _anim.SetTrigger("otkazRegLineMinus");
+    }
     [AosAction(name: "Проиграть анимацию Отказ шибер минус")]
     public void PlayShiberMinusAnim()
     {
