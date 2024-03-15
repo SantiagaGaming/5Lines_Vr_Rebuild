@@ -7,6 +7,7 @@ public class MovebleObjectWithWires : MovebleObject
     [SerializeField] private GameObject _wiresOn;
     [SerializeField] private GameObject _wiresOff;
     [SerializeField] private GameObject _contrs;
+   
     public override void RepairObject()
     {
         StartCoroutine(Move());
