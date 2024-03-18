@@ -33,20 +33,20 @@ public class Sp6Animation : ObjectWithAnimation
         if (value)
         {
             int z = 0;
-            while (z <= 120)
+            while (z >= -120)
             {
-                _roof.transform.localRotation = Quaternion.Euler(0, 0, z);
-                z++;
+                _roof.transform.localRotation = Quaternion.Euler(0, z, 0);
+                z--;
                 yield return new WaitForSeconds(0.001f);
             }
         }
         else
         {
-            int z = 120;
-            while (z >= 0)
+            int z = -120;
+            while (z <= 0)
             {
-                _roof.transform.localRotation = Quaternion.Euler(0, 0, z);
-                z--;
+                _roof.transform.localRotation = Quaternion.Euler(0, z, 0);
+                z++;
                 yield return new WaitForSeconds(0.001f);
             }
         }

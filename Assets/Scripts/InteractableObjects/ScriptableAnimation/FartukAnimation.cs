@@ -13,8 +13,8 @@ public class FartukAnimation : ObjectWithAnimation
         if (value)
         {
             Player.Instance.CanMove = false;
-            int x = 0;
-            while (x <= 90)
+            int x = 90;
+            while (x <= 170)
             {
                 _roof.transform.localRotation = Quaternion.Euler(x, 0, 0);
                 x++;
@@ -23,8 +23,8 @@ public class FartukAnimation : ObjectWithAnimation
         }
         else
         {
-            int x = 90;
-            while (x >= 0)
+            int x = 170;
+            while (x >= 90)
             {
                 _roof.transform.localRotation = Quaternion.Euler(x, 0, 0);
                 x--;
