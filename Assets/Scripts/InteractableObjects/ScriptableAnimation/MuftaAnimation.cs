@@ -9,6 +9,7 @@ using AosSdk.Core.PlayerModule;
 public class MuftaAnimation : ObjectWithAnimation
 {
     [SerializeField] private GameObject _roof;
+    [SerializeField] private GameObject _light;
 
     private bool _isAnimated = false;
     private bool _isOpen = false;
@@ -24,17 +25,20 @@ public class MuftaAnimation : ObjectWithAnimation
             int y = 0;
             while (y < 25)
             {
-                 _roof.transform.position += new Vector3(0, 0.01f, 0);
+                _roof.transform.position += new Vector3(0, 0.01f, 0);
                 yield return new WaitForSeconds(0.02f);
                 y++;
             }
-                _roof.SetActive(false);
+            _roof.SetActive(false);
+            _light.SetActive(true);
+
         }
         else if (!_isAnimated && !value)
         {
             _isAnimated = true;
             _isOpen = false;
             _roof.SetActive(true);
+            _light.SetActive(false);
             int y = 0;
             while (y < 25)
             {
