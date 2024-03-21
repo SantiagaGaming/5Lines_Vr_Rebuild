@@ -251,7 +251,7 @@ public class SceneObjectsHolder : MonoBehaviour
     }
     private void OnSetShupPosition(Transform pos, string objectId)
     {
-        _shupController.SetShupPosition(pos, name);
+        _shupController.SetShupPosition(pos, objectId);
     }
     private void OnChangeCanvasPerentCamera(Camera camera)
     {

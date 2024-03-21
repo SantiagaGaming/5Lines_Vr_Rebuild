@@ -47,6 +47,7 @@ public class MeasureController : MonoBehaviour
             _pointerDevice.SetValue(0);
             _measuretext = $"measure_device:{_type}:{_blackValue}:{_redValue}:{_pointerValue}";
         }
+        Debug.Log( "MEASURE        "+_measuretext);
         _api.InvokeOnMeasure(_measuretext);
     }
 }
