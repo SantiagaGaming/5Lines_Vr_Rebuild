@@ -9,6 +9,7 @@ public abstract class BaseStartScreenView : MonoBehaviour
     [SerializeField] protected GameObject LoadImage;
     [SerializeField] protected GameObject CatoLogoImage;
     [SerializeField] protected GameObject LineImage;
+    [SerializeField] protected GameObject GuideButton;
     [Space]
     [SerializeField] protected TextMeshProUGUI HeaderText;
     [SerializeField] protected TextMeshProUGUI CommentText;
@@ -31,10 +32,12 @@ public abstract class BaseStartScreenView : MonoBehaviour
         {
             LoadImage.SetActive(false);
             CatoLogoImage.SetActive(true);
+            GuideButton.SetActive(true);
         }
         else
         {
             CatoLogoImage.SetActive(false);
+            GuideButton.SetActive(false);
         }
         NextButtonGameObject.SetActive(true);
        
