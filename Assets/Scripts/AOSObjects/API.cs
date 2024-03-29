@@ -71,7 +71,7 @@ public class API : AosObjectBase
     }
     [AosAction(name: "Показать место")]
     public void showPlace(JObject place, JArray data, JObject nav)
-    {
+    {Debug.Log("DATA "+data.ToString());
         string location = place.SelectToken("apiId").ToString();
         if (location != null)
             SetLocationEvent?.Invoke(location);
@@ -145,6 +145,7 @@ public class API : AosObjectBase
     [AosAction(name: "Показать сообщение")]
     public void showMessage(JObject info, JObject nav)
     {
+        Debug.Log("MESSAGE " + info.ToString());
         string footerText = "";
         var header = info.SelectToken("header");
         var footer = info.SelectToken("footer");
@@ -152,6 +153,7 @@ public class API : AosObjectBase
         var alarm = info.SelectToken("alarm");
         if (header != null && footer != null && comment != null && alarm != null)
         {
+            Debug.Log("1");
             footerText = HtmlToText.Instance.HTMLToTextReplace(footer.ToString());
             string commentText = HtmlToText.Instance.HTMLToTextReplace(comment.ToString());
             string headText = header.ToString();
@@ -160,7 +162,7 @@ public class API : AosObjectBase
         }
         else if (header != null && comment != null && alarm != null)
         {
-
+            Debug.Log("2");
             string commentText = HtmlToText.Instance.HTMLToTextReplace(comment.ToString());
             string headText = header.ToString();
             string alarmImg = alarm.ToString();
@@ -168,6 +170,7 @@ public class API : AosObjectBase
         }
         else if (comment != null)
         {
+            Debug.Log("3");
             string commentText = HtmlToText.Instance.HTMLToTextReplace(comment.ToString());
             footerText = "";
             string headText = "";

@@ -173,6 +173,7 @@ public class SceneObjectsHolder : MonoBehaviour
     }
     private void ActivateActionObject(string name)
     {
+        Debug.Log("METHOD "+name);
         string radio = "radio";
         string scheme = "scheme";
         string measure = "measure";
