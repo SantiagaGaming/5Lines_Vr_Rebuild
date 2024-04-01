@@ -36,6 +36,7 @@ public class APIEventsInvoker : MonoBehaviour
         _api.SetMeasureValueEvent += OnSetMeasureValue;
         _api.ResultNameTextButtonSingleEvent += OnSetInstantiateSingleButtons;
         _api.ResultNameTextButtonEvent += OnSetInstantiateButtons;
+        _api.ShowMenuButtonEvent += OnShowMenuButton;
 
 
     }
@@ -64,6 +65,7 @@ public class APIEventsInvoker : MonoBehaviour
         _api.SetMeasureValueEvent -= OnSetMeasureValue;
         _api.ResultNameTextButtonSingleEvent -= OnSetInstantiateSingleButtons;
         _api.ResultNameTextButtonEvent -= OnSetInstantiateButtons;
+        _api.ShowMenuButtonEvent -= OnShowMenuButton;
 
     }
     private void OnSetInstantiateButtons(string name, string penalty, string resultText)
@@ -146,6 +148,10 @@ public class APIEventsInvoker : MonoBehaviour
     private void OnSetMeasureValue(float value)
     {
         _measureController.SetDeviceValue(value);
+    }
+    private void OnShowMenuButton()
+    {
+        _modeController.CurrentMenuScreen.ShowMenuButtons();
     }
 
 }

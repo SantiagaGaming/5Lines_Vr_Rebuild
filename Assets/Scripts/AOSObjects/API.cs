@@ -13,6 +13,7 @@ public class API : AosObjectBase
 {
     public Action ShowPlaceEvent;
     public Action ResetMeasureButtonsEvent;
+    public Action ShowMenuButtonEvent;
     public Action<float> SetMeasureValueEvent;
     public Action<string> SetTeleportLocationEvent;
     public Action<string> SetNewLocationTextEvent;
@@ -303,6 +304,9 @@ public class API : AosObjectBase
     [AosAction(name: "Показать меню")]
     public void showMenu(JObject faultInfo, JObject exitInfo, JObject resons)
     {
+       if(faultInfo.SelectToken("algorithms") != null) { ShowMenuButtonEvent?.Invoke(); }
+      
+        Debug.Log("FAULT "+ faultInfo.ToString());
         string headtext = faultInfo.SelectToken("name").ToString();
         string commentText = faultInfo.SelectToken("text").ToString();
         string exitSureText = exitInfo.SelectToken("quest").ToString();
@@ -313,6 +317,8 @@ public class API : AosObjectBase
             string warntext = HtmlToText.Instance.HTMLToTextReplace(exitInfo.SelectToken("warn").ToString());
             ShowExitTextEvent?.Invoke(exitText, warntext);
         }
+
+       
     }
     public void InvokeOnMeasure(string text)
     {

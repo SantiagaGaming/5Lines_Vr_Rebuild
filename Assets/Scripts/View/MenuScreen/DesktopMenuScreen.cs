@@ -24,6 +24,7 @@ public class DesktopMenuScreen : BaseMenuScreen
     [SerializeField] private GameObject _hideBackButton;
     [SerializeField] private GameObject _showBackButton;
     [SerializeField] private GameObject _resultPanel;
+    [SerializeField] private GameObject _algorithmsButton;
     [SerializeField] private AlarmImageController _armImageController;
 
     public override void SetMenuText(string headText, string commentText, string exitSureText)
@@ -73,10 +74,15 @@ public class DesktopMenuScreen : BaseMenuScreen
 
 
     }
+    public override void ShowMenuButtons()
+    {
+        _algorithmsButton.SetActive(true);
+    }
     private void ShowMessageScreen()
     {
         _desktopCanvasHolder.EnableCanvasByState(CanvasState.Last);
     }
+   
 
     public override void ShowMenuScreen(bool active)
     {
