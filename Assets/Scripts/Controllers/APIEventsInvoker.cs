@@ -141,9 +141,9 @@ public class APIEventsInvoker : MonoBehaviour
     {
         _modeController.CurrentMenuScreen.SetMenuText(headText, commentText, exitSureText);
     }
-    private void OnSetStartText(string headerText, string commentText, string buttonText, NextButtonState state)
+    private void OnSetStartText(string headerText, string commentText, string headerFaultText, string commentFaultText)
     {
-        _modeController.CurrentStartScreen.SetStartScreenText(headerText, HtmlToText.Instance.HTMLToTextReplace(commentText), buttonText, state);
+        _modeController.CurrentStartScreen.SetStartScreenText(headerText, HtmlToText.Instance.HTMLToTextReplace(commentText), headerFaultText, HtmlToText.Instance.HTMLToTextReplace(commentFaultText));
     }
     private void OnSetMeasureValue(float value)
     {

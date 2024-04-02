@@ -14,9 +14,9 @@ public class DesktopStartScreenView : BaseStartScreenView
     {
        _menuObject.SetActive(false);
     }
-    public override void SetStartScreenText(string headerText, string commentText, string buttonText, NextButtonState state)
+    public override void SetStartScreenText(string headerText, string commentText, string headerFaultText, string commentFaultText)
     {
-        base.SetStartScreenText(headerText, commentText, buttonText, state);
+        base.SetStartScreenText(headerText, commentText, headerFaultText, commentFaultText);
         _cursorManager.EnableCursor(true);
         _infoHeaderText.text = headerText;
         _inforCommentText.text = commentText;

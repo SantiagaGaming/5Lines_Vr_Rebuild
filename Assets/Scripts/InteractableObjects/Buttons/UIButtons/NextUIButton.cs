@@ -2,9 +2,11 @@ using AosSdk.Core.PlayerModule;
 using System.Diagnostics;
 using UnityEngine.UI;
 
-public class NextUIButton : BaseUIButton, INextButton
+public class NextUIButton : BaseUIButton
 {
-    public NextButtonState CurrentState { get; set; }
+
+
+    public delegate void NextButtonPressed(string name);
 
     public event NextButtonPressed NextButtonPressedEvent;
 
@@ -13,16 +15,8 @@ public class NextUIButton : BaseUIButton, INextButton
         ClickNextButton();
     }
     public void ClickNextButton()
-    {
-        if (CurrentState == NextButtonState.Start)
-        {
-            API.OnInvokeNavAction("next");
-            NextButtonPressedEvent?.Invoke("next");
-        }
-        else if (CurrentState == NextButtonState.Fault)
-        {
+    {            
             API.OnInvokeNavAction("start");
-            NextButtonPressedEvent?.Invoke("start");
-        }
+            NextButtonPressedEvent?.Invoke("start");      
     }
 }

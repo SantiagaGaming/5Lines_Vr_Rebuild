@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public abstract class BaseUIButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    
     protected Button Button;
     protected API API;
     public Action<bool> HoverUiEvent;

@@ -10,41 +10,44 @@ public abstract class BaseStartScreenView : MonoBehaviour
     [SerializeField] protected GameObject CatoLogoImage;
     [SerializeField] protected GameObject LineImage;
     [SerializeField] protected GameObject GuideButton;
+    [SerializeField] protected NextUIButton _nextUIButton;
     [Space]
     [SerializeField] protected TextMeshProUGUI HeaderText;
-    [SerializeField] protected TextMeshProUGUI CommentText;
+    [SerializeField] protected TextMeshProUGUI CommentText; 
+    [SerializeField] protected TextMeshProUGUI HeaderFaultText;
+    [SerializeField] protected TextMeshProUGUI CommentFaultText;
+
     [SerializeField] protected Text NextButtonText;
 
-    protected INextButton NextButton;
+    
+
     protected virtual void Awake()
     {
-        NextButton = NextButtonGameObject.GetComponent<INextButton>();
-        if (NextButton == null)
-        {
-            Debug.Log($"You must inherit gameObject {NextButtonGameObject.name} from INextButton");
-            return;
-        }
-        NextButton.NextButtonPressedEvent += OnHideStartScreen;
-    }
-    public virtual void SetStartScreenText(string headerText, string commentText, string buttonText, NextButtonState state)
-    {
-        if(state == NextButtonState.Start)
-        {
-            LoadImage.SetActive(false);
-            CatoLogoImage.SetActive(true);
-            GuideButton.SetActive(true);
-        }
-        else
-        {
-            CatoLogoImage.SetActive(false);
-            GuideButton.SetActive(false);
-        }
-        NextButtonGameObject.SetActive(true);
+        //NextButton = NextButtonGameObject.GetComponent<INextButton>();
+        //if (NextButton == null)
+        //{
+        //    Debug.Log($"You must inherit gameObject {NextButtonGameObject.name} from INextButton");
+        //    return;
+        //}
        
+    }
+    private void Start()
+    {
+        _nextUIButton.NextButtonPressedEvent += OnHideStartScreen;
+    }
+    public virtual void SetStartScreenText(string headerText, string commentText, string headerFaultText, string commentFaultText)
+    {
+        LoadImage.SetActive(false);
+        CatoLogoImage.SetActive(true);
+        GuideButton.SetActive(true);
+        NextButtonGameObject.SetActive(true);
+
         HeaderText.text = headerText;
         CommentText.text = commentText;
-        NextButtonText.text = buttonText;
-        NextButton.CurrentState = state;
+        HeaderFaultText.text = headerFaultText;
+        CommentFaultText.text = commentFaultText;
+       // NextButtonText.text = buttonText;
+       // NextButton.CurrentState = state;
     }
     protected virtual void OnHideStartScreen(string text)
     {
@@ -56,9 +59,9 @@ public abstract class BaseStartScreenView : MonoBehaviour
             ModeController.CurrentInteractScreen.EnableLocationObject(true);
             ModeController.CurrentInteractScreen.EnableTimerObject(true);
             ModeController.CurrentMenuController.CanTeleport = true;
-            
+
         }
     }
     protected abstract void DisableStartScreen();
-  
+
 }
