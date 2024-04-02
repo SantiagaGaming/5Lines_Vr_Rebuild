@@ -18,8 +18,8 @@ public class DesktopStartScreenView : BaseStartScreenView
     {
         base.SetStartScreenText(headerText, commentText, headerFaultText, commentFaultText);
         _cursorManager.EnableCursor(true);
-        _infoHeaderText.text = headerText;
-        _inforCommentText.text = commentText;
+        _infoHeaderText.text = headerFaultText;
+        _inforCommentText.text = commentFaultText;
     }
     protected override void OnHideStartScreen(string value)
     {

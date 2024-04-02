@@ -72,12 +72,11 @@ public class API : AosObjectBase
             var pl = item.SelectToken("place");
             if (pl != null)
             {
-                Debug.Log("PLLLLLLLLL" + pl.ToString());
+               
                 string location = pl.SelectToken("apiId").ToString();
                 if (location != null)
                 {
-                    SetLocationEvent?.Invoke(location);
-                    Debug.Log("LOOOOC" + location);
+                    SetLocationEvent?.Invoke(location);                 
                 }
 
 
@@ -289,21 +288,27 @@ public class API : AosObjectBase
         SetTimerTextEvent?.Invoke(time);
     }
     [AosAction(name: "Показать точки измерения")]
-    public void showMeasure(JArray measureDevices, JArray measurePoints)
+    public void showMeasure(JObject data)
     {
+        
         ResetMeasureButtonsEvent?.Invoke();
-        foreach (JObject item in measurePoints)
+        var points = data.SelectToken("points");
+        if(points != null)
         {
-            var tmpArray = item.SelectToken("points");
-            if (tmpArray != null && tmpArray is JArray)
+            foreach (JObject item in points)
             {
-                foreach (JObject item2 in tmpArray)
+                var tmpArray = item.SelectToken("points");
+                if (tmpArray != null && tmpArray is JArray)
                 {
-                    string butonName = item2.SelectToken("apiId").ToString();
-                    AddMeasureButtonEvent?.Invoke(butonName);
+                    foreach (JObject item2 in tmpArray)
+                    {
+                        string butonName = item2.SelectToken("apiId").ToString();
+                        AddMeasureButtonEvent?.Invoke(butonName);
+                    }
                 }
             }
         }
+        
     }
     [AosAction(name: "Показать точки измерения")]
     public void showMeasureResult(JObject result, JObject nav)
@@ -317,23 +322,28 @@ public class API : AosObjectBase
         }
     }
     [AosAction(name: "Показать меню")]
-    public void showMenu(JObject faultInfo, JObject exitInfo, JObject resons)
+    public void showMenu(JObject data)
     {
-        if (faultInfo.SelectToken("algorithms") != null) { ShowMenuButtonEvent?.Invoke(); }
-
-        Debug.Log("FAULT " + faultInfo.ToString());
-        string headtext = faultInfo.SelectToken("name").ToString();
-        string commentText = faultInfo.SelectToken("text").ToString();
-        string exitSureText = exitInfo.SelectToken("quest").ToString();
-        ShowMenuTextEvent?.Invoke(headtext, commentText, exitSureText);
+        
+      
+        if (data.SelectToken("algs") != null && data.SelectToken("algs").ToString() != String.Empty) { ShowMenuButtonEvent?.Invoke(); }
+        string exitSureText = data.SelectToken("exitInfo").SelectToken("quest").ToString();
+       
+        var fltInfo = data.SelectToken("fltInfo");
+        if (fltInfo != null)
+        {
+            string headtext = fltInfo.SelectToken("name").ToString();
+            string commentText = fltInfo.SelectToken("text").ToString();
+            ShowMenuTextEvent?.Invoke(headtext, commentText, exitSureText);
+        }
+        var exitInfo = data.SelectToken("exitInfo");
         if (exitInfo.SelectToken("text") != null && exitInfo.SelectToken("warn") != null)
         {
             string exitText = HtmlToText.Instance.HTMLToTextReplace(exitInfo.SelectToken("text").ToString());
-            string warntext = HtmlToText.Instance.HTMLToTextReplace(exitInfo.SelectToken("warn").ToString());
-            ShowExitTextEvent?.Invoke(exitText, warntext);
+                string warntext = HtmlToText.Instance.HTMLToTextReplace(exitInfo.SelectToken("warn").ToString());
+                ShowExitTextEvent?.Invoke(exitText, warntext);
         }
-
-
+       
     }
     public void InvokeOnMeasure(string text)
     {
