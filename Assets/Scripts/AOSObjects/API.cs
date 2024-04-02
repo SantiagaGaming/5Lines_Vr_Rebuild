@@ -2,8 +2,7 @@ using System;
 using AosSdk.Core.Utils;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
-using static UnityEditor.FilePathAttribute;
-using static UnityEditor.Progress;
+
 
 
 [AosSdk.Core.Utils.AosObject(name: "¿œ»")]
@@ -161,6 +160,7 @@ public class API : AosObjectBase
     public void showMessage(JObject info, JObject nav)
     {
         Debug.Log("MESSAGE " + info.ToString());
+       
         string footerText = "";
         var header = info.SelectToken("header");
         var footer = info.SelectToken("footer");
@@ -188,7 +188,7 @@ public class API : AosObjectBase
             Debug.Log("3");
             string commentText = HtmlToText.Instance.HTMLToTextReplace(comment.ToString());
             footerText = "";
-            string headText = "";
+            string headText = header.ToString(); 
             string alarmImg = "none";
             SetMessageTextEvent?.Invoke(headText, footerText, commentText, alarmImg);
         }

@@ -21,33 +21,24 @@ public abstract class BaseStartScreenView : MonoBehaviour
 
     
 
-    protected virtual void Awake()
-    {
-        //NextButton = NextButtonGameObject.GetComponent<INextButton>();
-        //if (NextButton == null)
-        //{
-        //    Debug.Log($"You must inherit gameObject {NextButtonGameObject.name} from INextButton");
-        //    return;
-        //}
-       
-    }
+  
     private void Start()
     {
         _nextUIButton.NextButtonPressedEvent += OnHideStartScreen;
+        Cursor.visible = true;
     }
     public virtual void SetStartScreenText(string headerText, string commentText, string headerFaultText, string commentFaultText)
     {
         LoadImage.SetActive(false);
         CatoLogoImage.SetActive(true);
         GuideButton.SetActive(true);
-        NextButtonGameObject.SetActive(true);
+        NextButtonGameObject.SetActive(true);       
 
         HeaderText.text = headerText;
         CommentText.text = commentText;
         HeaderFaultText.text = headerFaultText;
         CommentFaultText.text = commentFaultText;
-       // NextButtonText.text = buttonText;
-       // NextButton.CurrentState = state;
+      
     }
     protected virtual void OnHideStartScreen(string text)
     {
