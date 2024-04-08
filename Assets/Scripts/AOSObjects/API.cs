@@ -185,10 +185,16 @@ public class API : AosObjectBase
         }
         else if (comment != null)
         {
+            string headText = "";
             Debug.Log("3");
             string commentText = HtmlToText.Instance.HTMLToTextReplace(comment.ToString());
             footerText = "";
-            string headText = header.ToString(); 
+            var heade = info.SelectToken("header");
+            if (heade != null)
+            {
+                headText = heade.ToString();
+            }
+           
             string alarmImg = "none";
             SetMessageTextEvent?.Invoke(headText, footerText, commentText, alarmImg);
         }

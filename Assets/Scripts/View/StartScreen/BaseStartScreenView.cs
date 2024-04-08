@@ -17,7 +17,7 @@ public abstract class BaseStartScreenView : MonoBehaviour
     [SerializeField] protected TextMeshProUGUI HeaderFaultText;
     [SerializeField] protected TextMeshProUGUI CommentFaultText;
 
-    [SerializeField] protected Text NextButtonText;
+  
 
     
 
