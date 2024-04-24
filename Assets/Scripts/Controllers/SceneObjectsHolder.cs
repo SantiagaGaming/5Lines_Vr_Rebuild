@@ -179,6 +179,7 @@ public class SceneObjectsHolder : MonoBehaviour
         string measure = "measure";
         if (_stringParser.GetSearchingValue(name, radio))
         {
+            
             _modeController.CurrentInteractScreen.EnableActivateActionObject(SceneActionState.Radio);
             _actionButtonsHolder.SetCurrentRadioButton(name);
         }

@@ -1,3 +1,4 @@
+using AosSdk.Core.Utils;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ public class AOSActionButtonsHolder : MonoBehaviour
         var currentRadio = SearchObject(_radioAOSButtons, name);
         if (currentRadio != null)
             _currentRadioButton = currentRadio;
+       
     }
     public void SetCurrentSchemeButton(string name)
     {
@@ -46,8 +48,10 @@ public class AOSActionButtonsHolder : MonoBehaviour
         switch(state)
         {
             case SceneActionState.Radio:
-                if (_currentRadioButton != null)
-                    _currentRadioButton.InvokeOnClick();
+                var jsonObject = new JsonObject();
+                WebSocketWrapper.Instance.DoSendMessage(jsonObject);
+                //if (_currentRadioButton != null)
+                //    _currentRadioButton.InvokeOnClick();
                     break;
             case SceneActionState.Scheme:
                 if (_currentSchemeButton != null)
