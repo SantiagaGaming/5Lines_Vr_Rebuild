@@ -284,6 +284,7 @@ public class API : AosObjectBase
             {
                 string buttonName = item.SelectToken("apiId").ToString();
                 EnableDietButtonsEvent?.Invoke(buttonName);
+                Debug.Log("RADIO "+ buttonName);
             }
         }
     }
