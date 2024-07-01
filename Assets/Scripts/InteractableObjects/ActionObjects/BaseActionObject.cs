@@ -34,7 +34,10 @@ public class BaseActionObject : MonoBehaviour
     {
         if (!CanActivate)
             return;
-        SceneObjectsHolder.Instance.ActionButtonsHolder.InVokeOnClick(CurrentState);
+        if(CurrentState != SceneActionState.Radio)
+        {
+            SceneObjectsHolder.Instance.ActionButtonsHolder.InVokeOnClick(CurrentState);
+        }    
         BaseUIButton.BaseUIColorChanger.EnabledState();
         BaseUIButton.BaseUIColorChanger.CanChangeState = false;
     }
