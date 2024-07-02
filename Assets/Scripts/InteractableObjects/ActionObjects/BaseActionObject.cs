@@ -34,7 +34,7 @@ public class BaseActionObject : MonoBehaviour
     {
         if (!CanActivate)
             return;
-        if(CurrentState != SceneActionState.Radio)
+        if(CurrentState != SceneActionState.Radio) // срабатывает левая анимация 
         {
             SceneObjectsHolder.Instance.ActionButtonsHolder.InVokeOnClick(CurrentState);
         }    
