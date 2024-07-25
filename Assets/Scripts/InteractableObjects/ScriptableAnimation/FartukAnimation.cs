@@ -12,7 +12,7 @@ public class FartukAnimation : ObjectWithAnimation
 
         if (value)
         {
-            Player.Instance.CanMove = false;
+            
             int x = 90;
             while (x <= 170)
             {
@@ -31,7 +31,7 @@ public class FartukAnimation : ObjectWithAnimation
                 yield return new WaitForSeconds(0.001f);
             }
         }
-        Player.Instance.CanMove = true;
+       
     }
 
 

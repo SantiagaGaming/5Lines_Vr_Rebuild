@@ -17,8 +17,7 @@ public class MuftaAnimation : ObjectWithAnimation
     private IEnumerator RoofMover(bool value)
     {
         if (!_isAnimated && value)
-        {
-            Player.Instance.CanMove = false;
+        {         
             _isAnimated = true;
             _roof.SetActive(true);
             _isOpen = true;
@@ -47,8 +46,7 @@ public class MuftaAnimation : ObjectWithAnimation
                 y++;
             }
         }
-        _isAnimated = false;
-        Player.Instance.CanMove = true;
+        _isAnimated = false;       
     }
     public override void PlayScriptableAnimationClose()
     {

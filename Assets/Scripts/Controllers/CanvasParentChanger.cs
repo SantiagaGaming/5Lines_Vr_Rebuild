@@ -1,3 +1,4 @@
+using AosSdk.Core.PlayerModule;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,8 @@ public class CanvasParentChanger : MonoBehaviour
     private Camera _camera;
     public void ChangeCameraParent(Camera camera)
     {
+       
+
         _mainCamera.enabled = false;
         _camera = camera;
         _mouseRayCastHandler.SetActionCamera(_camera);
@@ -20,6 +23,7 @@ public class CanvasParentChanger : MonoBehaviour
         _cursorManager.EnableCursor(true);
         SceneObjectsHolder.Instance.CurrentState = PlayerState.Look;
         _backActionObject.Enable();
+        
     }
     public void RevertCamera()
     {

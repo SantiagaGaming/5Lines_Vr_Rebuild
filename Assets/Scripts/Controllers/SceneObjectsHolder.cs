@@ -55,6 +55,12 @@ public class SceneObjectsHolder : MonoBehaviour
             _mouseRayCastHandler.MousePosHoverEvent += OnChangeHelperOnHoverEvent;
         _mouseRayCastHandler.MousePosClickEvent += OnChangeReactionPositionEvent;
     }
+    public bool GetPlayerState()
+    {
+        if (CurrentState == PlayerState.Walk)
+            return true;
+        else return false;
+    }
     private void OnHideAllReaction()
     {
         _modeController.BaseReactionButtonsHandler.HideAllReactions();

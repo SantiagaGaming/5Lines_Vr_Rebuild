@@ -14,7 +14,7 @@ public class Sp6Animation : ObjectWithAnimation
         if (!_isAmimated)
         {
             if(value)
-            Player.Instance.CanMove = false;
+          
             _isAmimated = true;
             if(value)
             _anim.SetTrigger("kurbelOut");
@@ -25,7 +25,7 @@ public class Sp6Animation : ObjectWithAnimation
             yield return new WaitForSeconds(GetAnimLenght());
             _isAmimated = false;
             yield return new WaitForSeconds(2f);
-            Player.Instance.CanMove = true;
+          
         }
     }
     private IEnumerator RoofRotator(bool value)

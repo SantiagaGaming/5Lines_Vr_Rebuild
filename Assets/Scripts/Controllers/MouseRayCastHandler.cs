@@ -5,6 +5,8 @@ using UnityEditor;
 using UnityEngine;
 public class MouseRayCastHandler : MonoBehaviour
 {
+    [SerializeField] private GameObject _hideRayCastObjectScheme;
+    [SerializeField] private GameObject _hideRayCastObjectRadio;
     private InteractHand _interactHand;
     private Camera _currentCamera;
     private IHoverAble _currentHoverable;
@@ -22,7 +24,7 @@ public class MouseRayCastHandler : MonoBehaviour
     {
    
        
-        if (_currentCamera == null || !CanInteract)
+        if (_currentCamera == null || !CanInteract || _hideRayCastObjectScheme.activeSelf == true || _hideRayCastObjectRadio.activeSelf == true)
             return;
         var collisionObject = CheckRaycastCollider();
         if (Input.GetMouseButtonDown(0))
