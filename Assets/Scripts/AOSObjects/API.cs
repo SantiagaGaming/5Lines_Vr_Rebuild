@@ -25,6 +25,7 @@ public class API : AosObjectBase
     public Action<string, string, string> ActivateByNameEvent;
     public Action<string, string, string, string> SetMessageTextEvent;
     public Action<string, string, string> SetResultTextEvent;
+    public Action<string, string, string> ShowSticker;
     public Action<string, string, string> ResultNameTextButtonEvent;
     public Action<string, string> ShowExitTextEvent;
     public Action<string, string> ResultNameTextButtonSingleEvent;
@@ -60,6 +61,24 @@ public class API : AosObjectBase
     public void OnInvokeNavAction(string value)
     {
         navAction.Invoke(value);
+    }
+    public void showLearningSticker(JObject sticker)
+    {
+        Debug.Log(sticker.ToString());
+        string header = "";
+        string penalty = "";
+        string text = "";
+        header = sticker.SelectToken("header").ToString();
+        penalty = sticker.SelectToken("penalty").ToString();
+        var textmin = sticker.SelectToken("text");
+        if (textmin != null)
+        {
+            text = sticker.SelectToken("text").ToString();
+        }
+        ShowSticker?.Invoke(header, penalty, text);
+
+
+
     }
     [AosAction(name: "Показать место")]
     public void showPlace(JArray places, JObject nav)

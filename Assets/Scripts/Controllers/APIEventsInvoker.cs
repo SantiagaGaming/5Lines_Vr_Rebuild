@@ -37,6 +37,7 @@ public class APIEventsInvoker : MonoBehaviour
         _api.ResultNameTextButtonSingleEvent += OnSetInstantiateSingleButtons;
         _api.ResultNameTextButtonEvent += OnSetInstantiateButtons;
         _api.ShowMenuButtonEvent += OnShowMenuButton;
+        _api.ShowSticker += OnShowSticker;
 
 
     }
@@ -66,7 +67,13 @@ public class APIEventsInvoker : MonoBehaviour
         _api.ResultNameTextButtonSingleEvent -= OnSetInstantiateSingleButtons;
         _api.ResultNameTextButtonEvent -= OnSetInstantiateButtons;
         _api.ShowMenuButtonEvent -= OnShowMenuButton;
+        _api.ShowSticker -= OnShowSticker;
 
+    }
+    private void OnShowSticker(string header, string penalty, string text)
+    {
+
+        _modeController.CurrentInteractScreen.ShowSticker(header, penalty, text);
     }
     private void OnSetInstantiateButtons(string name, string penalty, string resultText)
     {
