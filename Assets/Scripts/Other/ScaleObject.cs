@@ -14,9 +14,10 @@ public class ScaleObject : MonoBehaviour
     
     private float _scale = 70f;
 
-    private Vector2 _size;
-    private Vector2 _minSize = new Vector2(1721.076f, 908.49f);
-   
+    private Vector2 _size;  
+    private Vector2 _minSize = new Vector2(780, 850);
+    private Vector2 _maxSize = new Vector2(4836, 3000);
+
     private bool _canZoom = true;
 
    
@@ -37,20 +38,22 @@ public class ScaleObject : MonoBehaviour
         float _zoom = obj.ReadValue<float>();
         if (_zoom > 0)
         {
-            _image.rectTransform.sizeDelta += new Vector2(_scale, _scale);
-            
-            
-        }
-        else
-        { 
             var rectTrans = _image.transform as RectTransform;
             _size = new Vector2(rectTrans.rect.width, rectTrans.rect.height);
-            if (_size.x<= _minSize.x || _size.y <= _minSize.y)
+            if (_size.x >= _maxSize.x || _size.y >= _maxSize.y)
+                return;
+            _image.rectTransform.sizeDelta += new Vector2(_scale, _scale);
+        }
+        else
+        {
+            var rectTrans = _image.transform as RectTransform;
+            _size = new Vector2(rectTrans.rect.width, rectTrans.rect.height);
+            if (_size.x <= _minSize.x || _size.y <= _minSize.y)
                 return;
             _image.rectTransform.sizeDelta -= new Vector2(_scale, _scale);
-            
+
 
         }
-       
+
     }
 }
