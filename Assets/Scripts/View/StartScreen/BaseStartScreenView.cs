@@ -10,6 +10,8 @@ public abstract class BaseStartScreenView : MonoBehaviour
     [SerializeField] protected GameObject CatoLogoImage;
     [SerializeField] protected GameObject LineImage;
     [SerializeField] protected GameObject GuideButton;
+    [SerializeField] protected GameObject ExitButton;
+    [SerializeField] protected GameObject ExitUnityButton;
     [SerializeField] protected NextUIButton _nextUIButton;
     [Space]
     [SerializeField] protected TextMeshProUGUI HeaderText;
@@ -30,9 +32,11 @@ public abstract class BaseStartScreenView : MonoBehaviour
     public virtual void SetStartScreenText(string headerText, string commentText, string headerFaultText, string commentFaultText)
     {
         LoadImage.SetActive(false);
+        ExitUnityButton.SetActive(false);
         CatoLogoImage.SetActive(true);
         GuideButton.SetActive(true);
-        NextButtonGameObject.SetActive(true);       
+        NextButtonGameObject.SetActive(true);
+        ExitButton.SetActive(true);       
 
         HeaderText.text = headerText;
         CommentText.text = commentText;

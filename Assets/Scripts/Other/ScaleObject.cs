@@ -15,7 +15,7 @@ public class ScaleObject : MonoBehaviour
     private float _scale = 70f;
 
     private Vector2 _size;  
-    private Vector2 _minSize = new Vector2(780, 850);
+    private Vector2 _minSize = new Vector2(1000, 850);
     private Vector2 _maxSize = new Vector2(4836, 3000);
 
     private bool _canZoom = true;
