@@ -6,16 +6,19 @@ using UnityEngine.UI;
 
 public class ImageChanger : MonoBehaviour
 {
-    [SerializeField] private Sprite[] _guideImages;
+    [SerializeField] private Sprite[] _guideImages; 
     [SerializeField] private Button _nextSlide;
     [SerializeField] private Button _backSlide;
     [SerializeField] private Text _counterText;
     private int _currentSlide = 0;
     private int _lenght;
+    private Image _image;
+    private Vector2 _minSize = new Vector2(1000, 850);
 
     private void Start()
     {
         _lenght = _guideImages.Length;
+        _image = GetComponent<Image>();
 
         _nextSlide.onClick.AddListener(() => OnChangeSprite(true));
         _backSlide.onClick.AddListener(() => OnChangeSprite(false));
@@ -23,6 +26,7 @@ public class ImageChanger : MonoBehaviour
     }
     private void OnChangeSprite(bool value)
     {
+        _image.rectTransform.sizeDelta = _minSize;
         if (value)
         {
             _currentSlide++;
@@ -61,6 +65,7 @@ public class ImageChanger : MonoBehaviour
     {
         _counterText.text = $"{_currentSlide + 1}/{_lenght}";
     }
+   
 
 
 }
