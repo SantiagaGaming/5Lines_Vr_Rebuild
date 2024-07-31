@@ -1,3 +1,4 @@
+using AosSdk.Core.Utils;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -147,7 +148,7 @@ public class SceneObjectsHolder : MonoBehaviour
         _mouseRayCastHandler.CanHover = true;
         _mouseRayCastHandler.CanInteract = true;
         _reaction = false;
-        if (CurrentState == PlayerState.Walk)
+        if (CurrentState == PlayerState.Walk && _mouseRayCastHandler.HideRayCastObject.activeSelf == false)
             _cursor.EnableCursor(false);
     }
     private void OnInitCurrentSceneObject(SceneAosObject sceneAosObject)
@@ -184,10 +185,13 @@ public class SceneObjectsHolder : MonoBehaviour
         string scheme = "scheme";
         string measure = "measure";
         if (_stringParser.GetSearchingValue(name, radio))
-        {
-            
+        {         
             _modeController.CurrentInteractScreen.EnableActivateActionObject(SceneActionState.Radio);
             _actionButtonsHolder.SetCurrentRadioButton(name);
+            var radioAosObject = new JsonAosObject();
+            radioAosObject.castedToStringAttribute = name;
+            radioAosObject.objectId = name;
+            WebSocketWrapper.Instance.DoSendMessage(radioAosObject);
         }
         else if (_stringParser.GetSearchingValue(name, scheme))
         {

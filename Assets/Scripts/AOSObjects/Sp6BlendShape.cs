@@ -1,8 +1,9 @@
+using AosSdk.Core.Utils;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sp6BlendShape : MonoBehaviour
+public class Sp6BlendShape : AosObjectBase
 {
     public int BlendShape = 0;
     public float  BlendShape2 = 100f;
@@ -10,15 +11,14 @@ public class Sp6BlendShape : MonoBehaviour
     private void Start()
     {
          skinnedMesh = GetComponent<SkinnedMeshRenderer>();
-        if (skinnedMesh != null)
-        {
-            StartCoroutine(SetBlendShape());
-        }
+        
     }
-    private IEnumerator SetBlendShape()
+    public void SetCondition(bool value)
     {
-        yield return new WaitForSeconds(5);
+        if(value)
         skinnedMesh.SetBlendShapeWeight(BlendShape, BlendShape2);
+        else
+            skinnedMesh.SetBlendShapeWeight(BlendShape, BlendShape);
     }
 }
 

@@ -15,6 +15,7 @@ public class MouseRayCastHandler : MonoBehaviour
     private VectorHolder _mousePosHolder;
     public bool CanInteract { get; set; } = true;
     public bool CanHover { get; set; } = true;
+    public GameObject HideRayCastObject => _hideRayCastObjectRadio;
     public void SetActionCamera(Camera camera) => _currentCamera = camera;
     private void Start()
     {

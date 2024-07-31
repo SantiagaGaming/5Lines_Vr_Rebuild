@@ -13,6 +13,7 @@ public class APIEventsInvoker : MonoBehaviour
     [SerializeField] private ModeController _modeController;
     [SerializeField] private MeasureController _measureController;
     [SerializeField] private InstantiateResultButton _instantiateResultButton;
+    [SerializeField] private BaseActionObject[] _actionButtons;
 
     private void OnEnable()
     {
@@ -38,6 +39,8 @@ public class APIEventsInvoker : MonoBehaviour
         _api.ResultNameTextButtonEvent += OnSetInstantiateButtons;
         _api.ShowMenuButtonEvent += OnShowMenuButton;
         _api.ShowSticker += OnShowSticker;
+        _api.ResetRadioButtonsEvent += OnResetRadioButtons;
+        _api.DeactivateActionButtons += OnDeactivateActionButtons;
 
 
     }
@@ -68,7 +71,16 @@ public class APIEventsInvoker : MonoBehaviour
         _api.ResultNameTextButtonEvent -= OnSetInstantiateButtons;
         _api.ShowMenuButtonEvent -= OnShowMenuButton;
         _api.ShowSticker -= OnShowSticker;
+        _api.ResetRadioButtonsEvent -= OnResetRadioButtons;
+        _api.DeactivateActionButtons -= OnDeactivateActionButtons;
 
+    }
+    private void OnDeactivateActionButtons()
+    {
+        foreach (var button in _actionButtons)
+        {
+            button.Disable();
+        }
     }
     private void OnShowSticker(string header, string penalty, string text)
     {
@@ -111,9 +123,13 @@ public class APIEventsInvoker : MonoBehaviour
     {
         _locationController.ConnectionEstablished();
     }
-    private void OnEnableDietButton(string buttonName)
+    private void OnEnableDietButton(string buttonName,string text)
     {
-        _diet.EnablePlusOrMinus(buttonName);
+        _diet.EnablePlusOrMinus(buttonName,text);
+    }
+    private void OnResetRadioButtons()
+    {
+        _diet.DestroyRadioButton();
     }
     private void OnEnableReactionButton(string button, string buttonName)
     {

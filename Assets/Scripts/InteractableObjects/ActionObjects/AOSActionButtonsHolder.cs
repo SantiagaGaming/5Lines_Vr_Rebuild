@@ -9,15 +9,15 @@ public class AOSActionButtonsHolder : MonoBehaviour
     [SerializeField] private SceneAosObject[] _radioAOSButtons;
     [SerializeField] private SceneAosObject[] _schemeAOSButtons;
     [SerializeField] private SceneAosObject[] _measureAOSButtons;
+    [SerializeField] private GameObject _dietObject;
 
     private SceneAosObject _currentRadioButton;
     private SceneAosObject _currentSchemeButton;
     private SceneAosObject _currentMeasureButton;
     public void SetCurrentRadioButton(string name)
     {
-        var currentRadio = SearchObject(_radioAOSButtons, name);
-        if (currentRadio != null)
-            _currentRadioButton = currentRadio;
+        _dietObject.gameObject.name = name;
+       
        
     }
     public void SetCurrentSchemeButton(string name)
@@ -48,8 +48,7 @@ public class AOSActionButtonsHolder : MonoBehaviour
         switch(state)
         {
             case SceneActionState.Radio:
-                var jsonObject = new JsonObject();
-                WebSocketWrapper.Instance.DoSendMessage(jsonObject);
+               
                 //if (_currentRadioButton != null)
                 //    _currentRadioButton.InvokeOnClick();
                     break;

@@ -10,14 +10,16 @@ public class API : AosObjectBase
 {
     public Action ShowPlaceEvent;
     public Action ResetMeasureButtonsEvent;
+    public Action ResetRadioButtonsEvent;
     public Action ShowMenuButtonEvent;
+    public Action DeactivateActionButtons;
     public Action<float> SetMeasureValueEvent;
     public Action<string> SetTeleportLocationEvent;
     public Action<string> SetNewLocationTextEvent;
     public Action<string> SetLocationEvent;
     public Action<string> SetLocationForFieldCollidersEvent;
     public Action<string> ActivateBackButtonEvent;
-    public Action<string> EnableDietButtonsEvent;
+    public Action<string,string> EnableDietButtonsEvent;
     public Action<string> SetTimerTextEvent;
     public Action<string> AddMeasureButtonEvent;
     public Action<string> ReactionEvent;
@@ -83,6 +85,8 @@ public class API : AosObjectBase
     [AosAction(name: "Показать место")]
     public void showPlace(JArray places, JObject nav)
     {
+        DeactivateActionButtons?.Invoke();
+        ResetRadioButtonsEvent?.Invoke();
         ShowPlaceEvent?.Invoke();
         foreach (JObject item in places)
         {
@@ -145,18 +149,20 @@ public class API : AosObjectBase
     public void updatePlace(JArray data)
     {
         Debug.Log("Enter UpdatePlace");
+
         foreach (JObject item in data)
         {
+
             var temp = item.SelectToken("points");
             if (temp != null)
             {
-                EnableDietButtonsEvent(null);
+            //    EnableDietButtonsEvent(null);
                 if (temp is JArray)
                 {
                     foreach (var temp2 in temp)
                     {
                         string buttonName = temp2.SelectToken("apiId").ToString();
-                        EnableDietButtonsEvent(buttonName);
+                       // EnableDietButtonsEvent(buttonName);
                     }
                 }
             }
@@ -299,11 +305,14 @@ public class API : AosObjectBase
                 }
             }
 
-            else if (item.SelectToken("apiId") != null)
+            else if (item.SelectToken("apiId") != null && item.SelectToken("name") != null)
             {
+
                 string buttonName = item.SelectToken("apiId").ToString();
-                EnableDietButtonsEvent?.Invoke(buttonName);
-                Debug.Log("RADIO "+ buttonName);
+                string name = item.SelectToken("name").ToString();
+
+
+                EnableDietButtonsEvent?.Invoke(buttonName, name);
             }
         }
     }
