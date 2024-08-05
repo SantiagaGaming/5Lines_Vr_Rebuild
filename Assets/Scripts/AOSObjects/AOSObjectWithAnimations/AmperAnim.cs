@@ -14,6 +14,7 @@ public class AmperAnim : AosObjectBase
     [AosAction(name: "Проиграть анимацию Нет Перевода")]
     public void NoPerev()
     {
+
         _anim.SetTrigger("NoPerev");
     }
     [AosAction(name: "Проиграть анимацию Номального перевода")]

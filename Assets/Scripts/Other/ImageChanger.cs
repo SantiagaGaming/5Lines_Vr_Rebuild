@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 
@@ -14,6 +15,7 @@ public class ImageChanger : MonoBehaviour
     private int _lenght;
     private Image _image;
     private Vector2 _minSize = new Vector2(1000, 850);
+    public bool GuideImage = false;
 
     private void Start()
     {
@@ -26,7 +28,7 @@ public class ImageChanger : MonoBehaviour
     }
     private void OnChangeSprite(bool value)
     {
-        _image.rectTransform.sizeDelta = _minSize;
+       if(!GuideImage) { _image.rectTransform.sizeDelta = _minSize; } 
         if (value)
         {
             _currentSlide++;

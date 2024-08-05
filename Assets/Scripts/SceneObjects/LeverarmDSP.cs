@@ -11,6 +11,7 @@ public class LeverarmDSP : MonoBehaviour
     }
     public void Rotate(int direction)
     {
+       
         if (direction == 0)
             _anim.SetTrigger("Left");
         else if (direction == 1)

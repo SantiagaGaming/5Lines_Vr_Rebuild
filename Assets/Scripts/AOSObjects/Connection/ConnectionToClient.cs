@@ -2,6 +2,7 @@ using AosSdk.Core.Utils;
 using UnityEngine;
 using System.Threading;
 using System;
+using Cysharp.Threading.Tasks;
 [AosSdk.Core.Utils.AosObject(name: "Коннект")]
 public class ConnectionToClient : AosObjectBase
 {
@@ -13,10 +14,16 @@ public class ConnectionToClient : AosObjectBase
     private const string READY_TO_ACTION_TEXT = "Ready to Action";
 
     private void Start() => _wrapper.OnClientConnected += OnReadyToConnect;
-    public void OnReadyToConnect()
+    public async void OnReadyToConnect(IAsyncResult async)
     {
-        Thread.Sleep(2000);
+        await TryConnection(async);
+    }
+    private async UniTask TryConnection(IAsyncResult async)
+    {
+        await UniTask.WaitUntil(() => async.IsCompleted);
         OnReadyToAction.Invoke(READY_TO_ACTION_TEXT);
         ConnectionReadyEvent?.Invoke();
+        Debug.Log("Connection");
     }
+
 }
