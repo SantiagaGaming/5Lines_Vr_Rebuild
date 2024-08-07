@@ -59,7 +59,7 @@ public class DesktopMenuScreen : BaseMenuScreen
    
     private void SetResultText(string headText, string commentText, string evalText)
     {
-        _headResutText.text = headText;
+        _headResutText.text = headText + ":";
         _evalResultText.text = evalText;
         _commentResultText.text = commentText;
 

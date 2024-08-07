@@ -25,6 +25,8 @@ public class SceneObjectsHolder : MonoBehaviour
     [SerializeField] private CursorManager _cursor;
     public PlayerState CurrentState { get; set; }
     public StrelkaAOS StrelkaAOS => _strelkaAOS;
+
+    private Timer _time = new Timer();
     public RadioButtonsContainer RadioButtonsContainer => _radioButtonsContainer;
     public LocationController LocationTextController => _locationController;
     public ModeController ModeController => _modeController;
@@ -161,7 +163,14 @@ public class SceneObjectsHolder : MonoBehaviour
         if (timeText == "" || timeText == "0")
             timeText = objectName;
         else
-            timeText = $"{objectName} \nВремя перехода:{timeText}";
+        {
+            double.TryParse(timeText, out double time);
+            _time.TimeChanger(time);
+            var temp = _time.GetFormattedTime();
+            
+            timeText = $"{objectName} (+{temp})";
+        }
+          
         foreach (var item in _baseObjects)
         {
             if (item.GetAOSName() == objectId)
