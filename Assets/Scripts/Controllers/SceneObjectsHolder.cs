@@ -276,7 +276,7 @@ public class SceneObjectsHolder : MonoBehaviour
     }
     private void OnChangeCanvasPerentCamera(Camera camera)
     {
-        _modeController.CurrentInteractScreen.EnableActivateActionObject(SceneActionState.Back);
+       // _modeController.CurrentInteractScreen.EnableActivateActionObject(SceneActionState.Back);
         _canvasParentChanger.ChangeCameraParent(camera);
         _mouseRayCastHandler.CanHover = true;
         _mouseRayCastHandler.CanInteract = true;
