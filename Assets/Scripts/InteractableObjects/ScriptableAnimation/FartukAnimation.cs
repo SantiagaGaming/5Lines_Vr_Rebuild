@@ -13,20 +13,20 @@ public class FartukAnimation : ObjectWithAnimation
         if (value)
         {
             
-            int x = 90;
-            while (x <= 170)
+            int x = 0;
+            while (x <= 90)
             {
-                _roof.transform.localRotation = Quaternion.Euler(x, 0, 0);
+                _roof.transform.localRotation = Quaternion.Euler(0, 0, x);
                 x++;
                 yield return new WaitForSeconds(0.001f);
             }
         }
         else
         {
-            int x = 170;
-            while (x >= 90)
+            int x = 90;
+            while (x >= 0)
             {
-                _roof.transform.localRotation = Quaternion.Euler(x, 0, 0);
+                _roof.transform.localRotation = Quaternion.Euler(0, 0, x);
                 x--;
                 yield return new WaitForSeconds(0.001f);
             }
