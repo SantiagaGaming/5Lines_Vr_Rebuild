@@ -15,6 +15,7 @@ public class Sp6BlendShape : AosObjectBase
     }
     public void SetCondition(bool value)
     {
+        Debug.Log("IN");
         if(value)
         skinnedMesh.SetBlendShapeWeight(BlendShape, BlendShape2);
         else
