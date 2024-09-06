@@ -14,7 +14,7 @@ public class CanvasParentChanger : MonoBehaviour
     private bool activeBack = true;
     public void ChangeCameraParent(Camera camera)
     {
-
+        Player.Instance.CursorLockMode = CursorLockMode.Locked;
         activeBack = true;
         //  _mainCamera.enabled = false;
         _camera = camera;
