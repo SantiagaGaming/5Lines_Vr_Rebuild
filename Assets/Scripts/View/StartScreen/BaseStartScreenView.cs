@@ -40,6 +40,7 @@ public abstract class BaseStartScreenView : MonoBehaviour
 
         HeaderText.text = headerText;
         CommentText.text = commentText;
+        CommentText.alignment = TextAlignmentOptions.MidlineLeft;
         HeaderFaultText.text = headerFaultText;
         CommentFaultText.text = commentFaultText;
       

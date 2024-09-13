@@ -57,4 +57,40 @@ public class CanvasGroupFader : MonoBehaviour
 
         _canvasGroup.alpha = end;
     }
+    public void FadeInSmooth(bool value)
+    {
+        if (_currentCoroutine != null)
+        {
+            StopCoroutine(_currentCoroutine);
+        }
+
+        if (value)
+            _currentCoroutine = StartCoroutine(WhileFade());
+        else
+        {
+            StopAllCoroutines();
+            _canvasGroup.alpha = 0;
+        }
+
+    }
+    public IEnumerator WhileFade()
+    {
+
+        float elapsedTime = 0;
+        while (elapsedTime < _fadeDuration)
+        {
+            _canvasGroup.alpha = Mathf.Lerp(0, 1, elapsedTime / _fadeDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        _canvasGroup.alpha = 1;
+        while (elapsedTime > 0)
+        {
+            _canvasGroup.alpha = Mathf.Lerp(0, 1, elapsedTime / _fadeDuration);
+            elapsedTime -= Time.deltaTime;
+            yield return null;
+        }
+        StartCoroutine(WhileFade());
+    }
 }
