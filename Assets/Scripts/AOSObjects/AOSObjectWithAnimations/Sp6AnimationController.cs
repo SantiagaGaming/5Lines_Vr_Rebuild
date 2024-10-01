@@ -1,6 +1,7 @@
 using System.Collections;
 using AosSdk.Core.Interaction.Interfaces;
 using AosSdk.Core.Utils;
+using Newtonsoft.Json.Bson;
 using UnityEngine;
 [AosSdk.Core.Utils.AosObject(name: "Анимация Sp6")]
 public class Sp6AnimationController : AosObjectBase
@@ -211,5 +212,9 @@ public class Sp6AnimationController : AosObjectBase
             return true;
         else
      return false;
+    }
+    public void PlayDispetcherAnim()
+    {
+        StrelkaAOS.StrelkaChangedEvent?.Invoke();
     }
 }
