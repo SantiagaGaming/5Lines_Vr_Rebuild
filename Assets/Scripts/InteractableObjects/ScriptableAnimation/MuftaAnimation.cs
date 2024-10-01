@@ -29,7 +29,7 @@ public class MuftaAnimation : ObjectWithAnimation
                 y++;
             }
             _roof.SetActive(false);
-            _light.SetActive(true);
+         //   _light.SetActive(true);
 
         }
         else if (!_isAnimated && !value)
@@ -37,7 +37,7 @@ public class MuftaAnimation : ObjectWithAnimation
             _isAnimated = true;
             _isOpen = false;
             _roof.SetActive(true);
-            _light.SetActive(false);
+          //  _light.SetActive(false);
             int y = 0;
             while (y < 25)
             {
