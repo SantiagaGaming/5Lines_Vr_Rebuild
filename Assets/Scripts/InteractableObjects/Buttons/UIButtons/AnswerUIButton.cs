@@ -6,12 +6,12 @@ using UnityEngine.UI;
 
 public class AnswerUIButton : BaseUIButton
 {
-    [SerializeField] private OtkazAOSUIButton[] _otkazButton;
     [SerializeField] private Text _answerButtonText;
-    [SerializeField] private TextMeshProUGUI[] _attempText;
+    [SerializeField] private TextMeshProUGUI _attempText;
+    private List<AnswerOptionsButton> _answerButtons = new List<AnswerOptionsButton>();
     private string _buttonId = "";
     private string _attemp = "Осталось попыток: 1";
-    public OtkazAOSUIButton[] OtkazButtons => _otkazButton;
+    public List<AnswerOptionsButton> AnswerButtons => _answerButtons;
     protected override void Click()
     {
         API.OnReasonInvoke(_buttonId);
@@ -21,7 +21,7 @@ public class AnswerUIButton : BaseUIButton
     public void SetColor()
     {
 
-        foreach (var otkazButton in _otkazButton)
+        foreach (var otkazButton in AnswerButtons)
         {
             if (otkazButton.Check)
             {
@@ -46,9 +46,10 @@ public class AnswerUIButton : BaseUIButton
     }
     private void SetText(string attemptext)
     {
-        foreach (var text in _attempText)
-        {
-            text.text = attemptext;
-        }
+        _attempText.text = attemptext;      
+    }
+    public void AddButton(List<AnswerOptionsButton> buttons)
+    {
+        _answerButtons = buttons;
     }
 }

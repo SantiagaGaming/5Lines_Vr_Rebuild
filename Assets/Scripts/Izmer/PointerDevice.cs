@@ -55,7 +55,7 @@ public class PointerDevice : MonoBehaviour
         Debug.Log(targetRotation + "Rotation     " + value + " value        " + divisionValue + " Division");
 
         arrowTransform.localRotation = Quaternion.Euler(targetRotation);
-        Debug.Log("RETVAL  "+ retVal);
+        Debug.Log("RETVAL  "+ retVal);  
         return retVal;
         
     }

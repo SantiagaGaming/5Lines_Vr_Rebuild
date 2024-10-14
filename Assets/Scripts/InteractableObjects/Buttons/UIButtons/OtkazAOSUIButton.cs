@@ -18,13 +18,13 @@ public class OtkazAOSUIButton : BaseUIButton
         if (!Check)
         {
 
-            foreach (var item in _answerButton.OtkazButtons)
-            {
-                if (item.Check)
-                {
-                    item.Click();
-                }
-            }
+            //foreach (var item in _answerButton.OtkazButtons)
+            //{
+            //    if (item.Check)
+            //    {
+            //        item.Click();
+            //    }
+            //}
             Check = true;
             _placeUiButton.SetDotSprite(true);
             _answerButton.SetColor();

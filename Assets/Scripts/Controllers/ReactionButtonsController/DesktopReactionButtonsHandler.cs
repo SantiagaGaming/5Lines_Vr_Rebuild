@@ -18,14 +18,14 @@ public class DesktopReactionButtonsHandler : BaseReactionButtonsHandler
         _prefabs = new List<GameObject>();
     }
     public override void ShowReactionButtonByName(string buttonActionName, string buttonText)
-    {
+    {    
         if (string.IsNullOrWhiteSpace(buttonActionName) || ButtonsSpawnPos == null) //|| _currentAosObject == SceneObjectsHolder.Instance.SceneAosObject
             return;
         _parent.position = ButtonsSpawnPos;
         ButtonActionName reactionName;
         Enum.TryParse<ButtonActionName>(buttonActionName, out reactionName);
-        if (ContainsObject(reactionName))
-            HideAllReactions();
+        //if (ContainsObject(reactionName))
+        //    HideAllReactions();
         _currentAosObject = SceneObjectsHolder.Instance.SceneAosObject;
         var prefub = Instantiate(_prefub, _parent);
         var reactionButton = prefub.GetComponentInChildren<ReactionUIButton>();

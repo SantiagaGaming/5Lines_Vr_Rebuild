@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class APIEventsInvoker : MonoBehaviour
@@ -14,6 +15,7 @@ public class APIEventsInvoker : MonoBehaviour
     [SerializeField] private MeasureController _measureController;
     [SerializeField] private InstantiateResultButton _instantiateResultButton;
     [SerializeField] private BaseActionObject[] _actionButtons;
+    [SerializeField] private CreateAnswerButtons _createAnswerButtons;
 
     private void OnEnable()
     {
@@ -41,6 +43,7 @@ public class APIEventsInvoker : MonoBehaviour
         _api.ShowSticker += OnShowSticker;
         _api.ResetRadioButtonsEvent += OnResetRadioButtons;
         _api.DeactivateActionButtons += OnDeactivateActionButtons;
+        _api.MenuanswerOptionsEvent += OnSetMenuAnswerOptions;
 
 
     }
@@ -73,7 +76,13 @@ public class APIEventsInvoker : MonoBehaviour
         _api.ShowSticker -= OnShowSticker;
         _api.ResetRadioButtonsEvent -= OnResetRadioButtons;
         _api.DeactivateActionButtons -= OnDeactivateActionButtons;
+        _api.MenuanswerOptionsEvent -= OnSetMenuAnswerOptions;
 
+    }
+    private void OnSetMenuAnswerOptions(string name, string attemp, List<AnswerButtonObject> listButtons)
+    {       
+        _createAnswerButtons.CreatePlaceButton(name, attemp, listButtons);
+     
     }
     private void OnDeactivateActionButtons()
     {
@@ -167,6 +176,7 @@ public class APIEventsInvoker : MonoBehaviour
     private void OnSetStartText(string headerText, string commentText, string headerFaultText, string commentFaultText)
     {
         _modeController.CurrentStartScreen.SetStartScreenText(headerText, HtmlToText.Instance.HTMLToTextReplace(commentText), headerFaultText, HtmlToText.Instance.HTMLToTextReplace(commentFaultText));
+        _api.OnMenuInvoke(); // что бы заполнить меню один раз 
     }
     private void OnSetMeasureValue(float value)
     {

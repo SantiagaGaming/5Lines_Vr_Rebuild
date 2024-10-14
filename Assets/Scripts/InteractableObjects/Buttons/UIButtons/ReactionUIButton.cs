@@ -32,6 +32,7 @@ public class ReactionUIButton : BaseUIButton
             return;
         var actionText = _stringParser.GetStringFromEnum(_currentActionName);
         _sceneAosObject.ActionWithObject(actionText);
+        SceneObjectsHolder.Instance.ModeController.BaseReactionButtonsHandler.HideAllReactions();
     }
     private Sprite GetSpriteByName()
     {
