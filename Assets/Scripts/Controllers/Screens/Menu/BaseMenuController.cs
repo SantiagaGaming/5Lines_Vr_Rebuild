@@ -1,3 +1,4 @@
+using AosSdk.Core.PlayerModule;
 using UnityEngine;
 
 public abstract class BaseMenuController : MonoBehaviour
@@ -17,6 +18,8 @@ public abstract class BaseMenuController : MonoBehaviour
         ModeController.CurrentInteractScreen.EnableAllHelperObjects(false);
         ModeController.CurrentMenuScreen.ShowMenuScreen(true);       
         _mouseRayCast.CanHover = false;
+        Player.Instance.CanMove = false;
+        Player.Instance.CursorLockMode = CursorLockMode.Locked;
     }
     public virtual void TeleportToGame()
     {

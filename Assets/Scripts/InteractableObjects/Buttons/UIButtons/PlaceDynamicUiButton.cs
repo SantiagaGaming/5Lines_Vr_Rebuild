@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class PlaceDynamicUiButton : MonoBehaviour
 {
-    
-    [SerializeField] private PlaceUiButton[] _placeUiButton;
+       
     [SerializeField] private GameObject _buttonImage;
     [SerializeField] private Image _dotImage;
     [SerializeField] private Sprite _selectedDotOk;

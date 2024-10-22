@@ -15,7 +15,7 @@ public class AOSAmpermetr : AosObjectBase
     private string _napr;
     private string _voltage;
     public void SetCondition(float value)
-    {
+    {       
         if (value < 0)
             _fuse.ResetButton();
         else if (value <= 0.5f)

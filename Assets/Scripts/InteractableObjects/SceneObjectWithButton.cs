@@ -9,6 +9,7 @@ public class SceneObjectWithButton : SceneObject
     public override void OnClicked(InteractHand interactHand)
     {
         base.OnClicked(interactHand);
+        SceneObjectsHolder.Instance.ModeController.BaseReactionButtonsHandler.HideAllReactions();
         SetButtonsTransformEvent?.Invoke(_buttonsPos);
     }
 }

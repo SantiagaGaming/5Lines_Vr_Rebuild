@@ -23,9 +23,7 @@ public class DesktopReactionButtonsHandler : BaseReactionButtonsHandler
             return;
         _parent.position = ButtonsSpawnPos;
         ButtonActionName reactionName;
-        Enum.TryParse<ButtonActionName>(buttonActionName, out reactionName);
-        //if (ContainsObject(reactionName))
-        //    HideAllReactions();
+        Enum.TryParse<ButtonActionName>(buttonActionName, out reactionName);       
         _currentAosObject = SceneObjectsHolder.Instance.SceneAosObject;
         var prefub = Instantiate(_prefub, _parent);
         var reactionButton = prefub.GetComponentInChildren<ReactionUIButton>();

@@ -24,36 +24,10 @@ public class ShupController : MonoBehaviour
         {
             if (_redShup.transform.position != newPos.position && _blackShup.transform.position != newPos.position)
             {
-                ChangeObjectPosition(_redShup, newPos);
-                _redShup.transform.parent = null;
-                _redShup.transform.rotation *=Quaternion.Euler(-90, 0, 0);
-                _firstMeasure = true;
-                measureText = text;
-                SetMeasureTextEvent?.Invoke(measureText);
-                _measureController.SetRedText(measureText);
-            }
-            else if (_redShup.transform.position == newPos.position)
-            {
-                ChangeObjectPosition(_redShup, _redShupResetPos);
-                _redShup.transform.parent = _redShupResetPos;
-                _measureController.SetRedText(null);
-            }
-            else if (_blackShup.transform.position == newPos.position)
-            {
-                ChangeObjectPosition(_blackShup, _blackShupResetPos);
-                _blackShup.transform.parent = _blackShupResetPos;
-                _measureController.SetBlackText(null);
-                _firstMeasure = true;
-            }
-        }
-        else if (_firstMeasure)
-        {
-            if (_redShup.transform.position != newPos.position && _blackShup.transform.position != newPos.position)
-            {
                 ChangeObjectPosition(_blackShup, newPos);
                 _blackShup.transform.parent = null;
                 _blackShup.transform.rotation *= Quaternion.Euler(-90, 0, 0);
-                _firstMeasure = false;
+                _firstMeasure = true;
                 measureText = text;
                 SetMeasureTextEvent?.Invoke(measureText);
                 _measureController.SetBlackText(measureText);
@@ -70,6 +44,33 @@ public class ShupController : MonoBehaviour
                 ChangeObjectPosition(_redShup, _redShupResetPos);
                 _redShup.transform.parent = _redShupResetPos;
                 _measureController.SetRedText(null);
+                _firstMeasure = true;
+            }
+            
+        }
+        else if (_firstMeasure)
+        {
+            if (_redShup.transform.position != newPos.position && _blackShup.transform.position != newPos.position)
+            {
+                ChangeObjectPosition(_redShup, newPos);
+                _redShup.transform.parent = null;
+                _redShup.transform.rotation *= Quaternion.Euler(-90, 0, 0);
+                _firstMeasure = false;
+                measureText = text;
+                SetMeasureTextEvent?.Invoke(measureText);
+                _measureController.SetRedText(measureText);
+            }
+            else if (_redShup.transform.position == newPos.position)
+            {
+                ChangeObjectPosition(_redShup, _redShupResetPos);
+                _redShup.transform.parent = _redShupResetPos;
+                _measureController.SetRedText(null);
+            }
+            else if (_blackShup.transform.position == newPos.position)
+            {
+                ChangeObjectPosition(_blackShup, _blackShupResetPos);
+                _blackShup.transform.parent = _blackShupResetPos;
+                _measureController.SetBlackText(null);
                 _firstMeasure = false;
             }
         }
