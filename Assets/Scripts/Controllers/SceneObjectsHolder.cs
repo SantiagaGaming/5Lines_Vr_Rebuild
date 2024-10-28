@@ -286,6 +286,7 @@ public class SceneObjectsHolder : MonoBehaviour
         _canvasParentChanger.RevertCamera();
         _api.InvokeEndTween(_locationController.BackLocation);
         ResetAllAnimationObjects();
+        _modeController.CurrentInteractScreen.SetHelperTextPosition(null);
         ModeController.BaseReactionButtonsHandler.HideAllReactions();
         _moveUiButtonsHolder.SetSideMovingObject(null);
         OnHideReactionWindow();
