@@ -18,8 +18,23 @@ public class DispathcerAnim : MonoBehaviour
     {
         _anim= GetComponent<Animator>();
     }
-    private void OnPlayStrelkaAnim()
+    private void OnPlayStrelkaAnim(string value)
     {
-        _anim.SetTrigger("Perevod");
+        if(value == "1")
+        {
+            _anim.SetTrigger("1");
+        }
+        if (value == "2")
+        {
+            _anim.SetTrigger("2");
+        }
+        if (value == "3")
+        {
+            _anim.SetTrigger("3");
+        }
+        if (value == "4")
+        {
+            _anim.SetTrigger("4");
+        }
     }
 }

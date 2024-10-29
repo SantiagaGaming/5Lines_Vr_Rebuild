@@ -7,7 +7,7 @@ using UnityEngine;
 public class StrelkaAOS : AosObjectBase
 {
     private bool _condition;
-    public static Action StrelkaChangedEvent;
+    public static Action<string> StrelkaChangedEvent;
 
     [AosAction("Задать состояние точки true +, false -")]
     public void SetStrelkaPosition([AosParameter("Направление перевода")] bool position)

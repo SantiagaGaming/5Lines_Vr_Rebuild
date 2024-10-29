@@ -183,8 +183,8 @@ public class Sp6AnimationController : AosObjectBase
         else
      return false;
     }
-    public void PlayDispetcherAnim()
+    public void PlayDispetcherAnim(string value)
     {
-        StrelkaAOS.StrelkaChangedEvent?.Invoke();
+        StrelkaAOS.StrelkaChangedEvent?.Invoke(value);
     }
 }

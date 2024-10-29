@@ -22,6 +22,6 @@ public class StrelkaUiButton : BaseUIButton
             AOSRadio button = radioContainer.GetButtonMinus(location.CurrentLocation());
             button.InvokeOnClick();
         }
-        StrelkaAOS.StrelkaChangedEvent?.Invoke();
+       // StrelkaAOS.StrelkaChangedEvent?.Invoke();
     }
 }
