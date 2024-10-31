@@ -278,7 +278,7 @@ public class API : AosObjectBase
     public void showPoints(string info, JArray data)
     {
 
-
+        Debug.Log("EYE"+data);
         EnableRactionButtonEvent?.Invoke(null, null);
         foreach (JObject item in data)
         {
@@ -341,6 +341,8 @@ public class API : AosObjectBase
         Debug.Log("in showFaultInfo Measure Result");
         if (result.SelectToken("result") != null)
         {
+            var value = result.SelectToken("result");
+            Debug.Log("RES VALUE  " + value.ToString());
             float measureValue = float.Parse(result.SelectToken("result").ToString());
             SetMeasureValueEvent?.Invoke(measureValue);
             Debug.Log("in showFaultInfo Measure Result " + measureValue);

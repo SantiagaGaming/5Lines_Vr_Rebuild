@@ -15,6 +15,7 @@ public class MeasureController : MonoBehaviour
 
    public void SetDeviceValue(float value)
     {
+        Debug.Log("VALUE " + value);
         _pointerValue = _pointerDevice.SetValue(value);
         _measuretext = $"measure_device:{_type}:{_blackValue}:{_redValue}:{_pointerValue}";
         _api.InvokeOnMeasure(_measuretext);
